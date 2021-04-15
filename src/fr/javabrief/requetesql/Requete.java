@@ -63,9 +63,12 @@ public class Requete {
 	}
 
 	public static void updateCompte(Compte compte) throws SQLException {
-		String sqlUpdate = "UPDATE compte SET SOLDECOMPTE = 5.01 WHERE NUMEROCOMPTE = ?";
+		String sqlUpdate = "UPDATE compte SET CODETYPECOMPTE = ?, CODETITULAIRE = ?, SOLDECOMPTE = ? WHERE NUMEROCOMPTE = ?";
 		PreparedStatement preparedStatement = AccessBd.getConnection().prepareStatement(sqlUpdate);
-		preparedStatement.setInt(1, compte.getNumeroCompte());
+		preparedStatement.setInt(4, compte.getNumeroCompte());
+		preparedStatement.setString(1, compte.getCodeTypeCompte());
+		preparedStatement.setInt(2, compte.getCodeTitulaire());
+		preparedStatement.setFloat(3, compte.getSoldeCompte());
 		preparedStatement.executeUpdate();
 	}
 

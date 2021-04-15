@@ -13,7 +13,7 @@ public class Main {
 			// INSERT INTO //
 
 			// Compte newCompte = new Compte(11, "a", 7, (float) 9.97);
-			// Compte updateSolde = new Compte(10, "a", 14, (float) 4.47);
+			// Compte updateSolde = new Compte(10, "b", 14, (float) 6.03);
 //			Requete.ajouterCompte(newCompte);
 
 			// DELETE //
@@ -24,7 +24,13 @@ public class Main {
 
 			// Requete.updateCompte(updateSolde);
 
+			// READ //
+			/*
+			 * for (Compte c : Requete.getAllCompte()) { c.setSoldeCompte(10000000);
+			 * Requete.updateCompte(c); }
+			 */
 			for (Compte c : Requete.getAllCompte()) {
+
 				System.out.println(c);
 			}
 
