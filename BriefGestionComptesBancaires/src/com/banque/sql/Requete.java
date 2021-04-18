@@ -39,25 +39,25 @@ public class Requete {
 	}
 	
 	public static Titulaire getTitulaireByCode(int code_titulaire) throws ClassNotFoundException, SQLException{
-        String requete = "SELECT * FROM titulaire WHERE CODETITULAIRE=?";
+        String requete = "SELECT * FROM titulaire WHERE CODE_TITULAIRE=?";
         PreparedStatement preparedStatement = AccesBD.getConnexion().prepareStatement(requete);
         preparedStatement.setInt(1, code_titulaire);
         ResultSet resultat = preparedStatement.executeQuery();
             resultat.next();
             Titulaire titulaire = new Titulaire();
             
-            titulaire.setPrenomTitulaire(resultat.getString("PRENOMTITULAIRE"));
-            titulaire.setNomTitulaire(resultat.getString("NOMTITULAIRE"));
-            titulaire.setAdresseTitulaire(resultat.getString("ADRESSETITULAIRE"));
-            titulaire.setCodePostalTitulaire(resultat.getString("CODEPOSTALETITULAIRE"));
-            titulaire.setCodeTitulaire(resultat.getInt("CODETITULAIRE"));
+            titulaire.setPrenomTitulaire(resultat.getString("PRENOM_TITULAIRE"));
+            titulaire.setNomTitulaire(resultat.getString("NOM_TITULAIRE"));
+            titulaire.setAdresseTitulaire(resultat.getString("ADRESSE_TITULAIRE"));
+            titulaire.setCodePostalTitulaire(resultat.getString("CODE_POSTAL_TITULAIRE"));
+            titulaire.setCodeTitulaire(resultat.getInt("CODE_TITULAIRE"));
             
         return titulaire;
     }
     
                 
     public static  void titulaireUpdate(Titulaire titulaire) throws SQLException{
-        PreparedStatement preparedStatement = AccesBD.getConnexion().prepareStatement("UPDATE Titulaire SET PRENOMTITULAIRE=?, NOMTITULAIRE=?, ADRESSETITULAIRE=?, CODEPOSTALETITULAIRE=? WHERE CODETITULAIRE=?");
+        PreparedStatement preparedStatement = AccesBD.getConnexion().prepareStatement("UPDATE Titulaire SET PRENOM_TITULAIRE=?, NOM_TITULAIRE=?, ADRESSE_TITULAIRE=?, CODE_POSTAL_TITULAIRE=? WHERE CODE_TITULAIRE=?");
                         
                 preparedStatement.setString(1,titulaire.getPrenomTitulaire());
                 preparedStatement.setString(2,titulaire.getNomTitulaire());
@@ -76,7 +76,7 @@ public static int getNombreTitulaire() throws SQLException
     public static  void createTitulaire(Titulaire titulaire) throws SQLException{
         PreparedStatement preparedStatement = AccesBD.getConnexion().prepareStatement("INSERT INTO Titulaire VALUES (null, ?, ?, ?, ?)");
             
-//                preparedStatement.setInt(1,titulaire.getCode_titulaire());
+//                preparedStatement.setInt(1,titulaire.getCodeTitulaire());
                 preparedStatement.setString(1,titulaire.getPrenomTitulaire());
                 preparedStatement.setString(2,titulaire.getNomTitulaire());
                 preparedStatement.setString(3,titulaire.getAdresseTitulaire());
@@ -88,7 +88,7 @@ public static int getNombreTitulaire() throws SQLException
     public static void deleteTitulaire(Titulaire titulaire) throws SQLException{
         Statement statement = null;
         
-            String sql = "DELETE FROM titulaire WHERE CODETITULAIRE="+titulaire.getCodeTitulaire();
+            String sql = "DELETE FROM titulaire WHERE CODE_TITULAIRE="+titulaire.getCodeTitulaire();
             statement = AccesBD.getConnexion().prepareStatement(sql);
 
             statement.executeUpdate(sql);
